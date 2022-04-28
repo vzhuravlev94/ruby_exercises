@@ -1,5 +1,6 @@
 puts "Введите переменную a"
 a = gets.to_f
+
 puts "Введите переменную b"
 b = gets.to_f
 
