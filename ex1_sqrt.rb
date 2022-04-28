@@ -1,6 +1,5 @@
 puts "Введите переменную a"
 a = gets.to_f
-
 puts "Введите переменную b"
 b = gets.to_f
 
@@ -16,6 +15,6 @@ if d > 0
 elsif d == 0
 	x = -b / (2 * a)
 	puts "Дискриминант = #{d}, а корень x1 = x2 = #{x}"
-else 
-	puts "Корней нет" 
+else
+	puts "Корней нет"
 end

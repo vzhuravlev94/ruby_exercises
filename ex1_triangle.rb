@@ -1,6 +1,5 @@
 puts "Какое основание?"
 a = gets.to_f
-
 puts "Какая высота?"
 h = gets.to_f
 
