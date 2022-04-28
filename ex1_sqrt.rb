@@ -6,7 +6,6 @@ b = gets.to_f
 
 puts "Введите переменную c"
 c = gets.to_f
-
 d = b**2 - 4 * a * c
 
 if d > 0
