@@ -15,4 +15,5 @@ elsif year % 400 == 0
 end
 
 days_in_months = [31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
 puts x = days_in_months[0...(month.to_i - 1)].sum + date.to_i

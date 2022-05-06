@@ -1,5 +1,5 @@
 months = {
-  "January" => 31,
+	"January" => 31,
 	"February" => 28,
 	"March" => 31,
 	"April" => 30,
