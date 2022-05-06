@@ -12,6 +12,7 @@ loop do
 end
 
 puts purchase
+
 total_cost = 0
 
 purchase.each do |name, price_amount|

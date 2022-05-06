@@ -13,6 +13,5 @@ months = {
 	"December" => 31
 }
 
-
 months.each do |key, value| puts key + ": " + value.to_s if value == 30
 end
