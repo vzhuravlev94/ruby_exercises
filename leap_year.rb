@@ -7,11 +7,10 @@ month = gets.to_i
 puts "Введите год:"
 year = gets.to_i
 
-if year % 4 == 0 && year % 100 !=0
-  february = 29
-elsif year % 400 == 0
-  february = 29
-  else february = 28
+february = if year % 4 == 0 && year % 100 !=0 || year % 400 == 0
+  29
+else
+  28
 end
 
 days_in_months = [31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
