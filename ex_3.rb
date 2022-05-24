@@ -14,7 +14,7 @@ class Station
     @trains.each {|train| puts train.number}
   end
 
-  def show_trains_type
+  def show_trains_type(type)
     @trains.each { |train| puts train.type == type}
   end
 
@@ -26,32 +26,32 @@ end
 class Route
   attr_accessor :stations_list
 
-  def initialize(first_station = Station.new(station_name), last_station = Station.new(station_name))
-    @stations_list = [first_station, @int_stations = [], last_station]
+  def initialize(first_station, last_station)
+    @stations_list = [first_station, last_station]
   end
 
   def first_station
     @stations_list.first
-    # Station.new(station_name).accept_train(train)
   end
 
   def add_station(station)
-    @int_stations << station
+    @stations_list.insert(-2, station)
   end
 
   def delete_station(station)
-    @int_stations.delete(station){"Станция на маршруте не найдена"}
+    int_stations_list = @stations_list[1..-2]
+    int_stations_list.delete(station) if int_stations_list.include?(station)
   end
 
   def show_stations
-    @stations_list.flatten.compact.each {|station| puts station}
+    @stations_list.each {|station| puts station}
   end
 end
 
 class Train
   attr_accessor :number, :type, :speed, :route, :carriages_amount, :current_station
 
-  def initialize(number, type = %w[cargo passenger], carriages_amount) #тип поезда указывается по-другому, посомтреть скринкаст
+  def initialize(number, type, carriages_amount)
     @number = number
     @type = type
     @carriages_amount = carriages_amount
@@ -80,33 +80,33 @@ class Train
 
   def set_route(route)
     @route = route
-    @current_station = 0
+    @current_station_index = 0
     route.first_station.accept_train(self)
   end
 
   def move_forward
     if next_station.accept_train(self)
-      @current_station.send_train(self)
-      next_station
+      current_station.send_train(self)
+      @current_station_index += 1
     end
   end
 
   def move_backward
     if previous_station.accept_train(self)
-      @current_station.send_train(self)
-      previous_station
+      current_station.send_train(self)
+      @current_station_index -= 1
     end
   end
 
   def current_station
-    route.stations_list[@current_station]
+    route.stations_list[@current_station_index]
   end
 
   def next_station
-    @next_station = @stations_list.flatten.compact[@current_station + 1]
+    route.stations_list[@current_station_index + 1]
   end
 
   def previous_station
-    @previous_station = @stations_list.flatten.compact[@current_station - 1]
+    route.stations_list[@current_station_index - 1]
   end
 end
