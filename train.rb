@@ -47,4 +47,28 @@ class Train
   def previous_station
     route.stations_list[@current_station_index - 1]
   end
+
+  def add_cargo_carriage(cargo_carriage)
+    if speed == 0 && cargo_carriage.kind_of?(CargoCarriage)
+      @cargo_train_carriages << cargo_carriage
+    end
+  end
+
+  def delete_cargo_carriage(cargo_carriage)
+    if speed == 0 && @carriages_amount >= 1
+      @cargo_train_carriages.delete(cargo_carriage) if @cargo_train_carriages.include?(cargo_carriage)
+    end
+  end
+
+  def add_passenger_carriage(passenger_carriage)
+    if speed == 0 && passenger_carriage.kind_of?(PassengerCarriage)
+      @passenger_train_carriages << passenger_carriage
+    end
+  end
+
+  def delete_passenger_carriage(passenger_carriage)
+    if speed == 0 && @carriages_amount >= 1
+      @passenger_train_carriages.delete(passenger_carriage) if @passenger_train_carriages.include?(passenger_carriage)
+    end
+  end
 end
