@@ -13,9 +13,9 @@ class Train
   def initialize(number)
     @number = number
     @speed = 0
+    validate!
     @@trains[number] = self
     register_instance
-    validate!
   end
 
   def validate!

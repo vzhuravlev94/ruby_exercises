@@ -89,8 +89,8 @@ class Interface
         end
       rescue Exception => a
         puts a.inspect
+      retry
       end
-
   end
 
   def create_route
@@ -110,6 +110,7 @@ class Interface
         raise "Нельзя выбрать одну и ту же станцию!" if @first_station_index == @last_station_index
       rescue Exception => d
         puts d.message
+      retry
       else
         last_station = @stations[@last_station_index]
         route = Route.new(first_station, last_station)
@@ -147,6 +148,7 @@ class Interface
         raise "Ошибка! Введите другое число!" unless route_action_choice == 1 || route_action_choice == 2
       rescue Exception => f
         puts f.message
+      retry
       end
     end
   end
@@ -224,6 +226,7 @@ class Interface
         raise "Ошибка! Введите другое число!"
       rescue Exception => m
         puts m.inspect
+      retry
       end
     end
   end
@@ -244,6 +247,7 @@ class Interface
         end
     rescue Exception => n
       puts n.inspect
+    retry
     end
   end
 
