@@ -14,7 +14,7 @@ class Station
     register_instance
   end
 
-  def station_block(&block)
+  def station_block
     @trains.each { |train| yield(train) }
   end
 

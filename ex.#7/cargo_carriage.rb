@@ -5,7 +5,7 @@ class CargoCarriage
   attr_accessor :volume, :occupied_volume
   include Manufacturer
 
-  def initialize(volume, number = rand(0..99))
+  def initialize(volume, number = rand(0..999))
     @type = "cargo"
     @volume = volume.to_i
     @number = number

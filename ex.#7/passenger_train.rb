@@ -5,6 +5,5 @@ class PassengerTrain < Train
     super(number)
     @number = number
     @type = "passenger"
-    @passenger_train_carriages = []
   end
 end

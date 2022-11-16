@@ -183,12 +183,12 @@ class Interface
         puts "Укажите объем грузового вагона:"
         volume = gets.chomp.to_i
         cargo_carriage = CargoCarriage.new(volume)
-        @trains[train_index].add_cargo_carriage(cargo_carriage)
+        @trains[train_index].add_carriage(cargo_carriage)
       elsif @trains[train_index].kind_of?PassengerTrain
         puts "Укажите количество мест в пассажирском вагоне:"
         seats = gets.chomp.to_i
         passenger_carriage = PassengerCarriage.new(seats)
-        @trains[train_index].add_passenger_carriage(passenger_carriage)
+        @trains[train_index].add_carriage(passenger_carriage)
       end
     end
   end
@@ -202,11 +202,10 @@ class Interface
       puts "Выберите поезд из общего списка по индексу:"
       @trains.each_index {|index| puts "#{index}: #{@trains[index]}"}
       train_index = gets.chomp.to_i
-      if @trains[train_index].kind_of?CargoTrain
-        @trains[train_index].delete_cargo_carriage(cargo_carriage)
-      elsif @trains[train_index].kind_of?PassengerTrain
-        @trains[train_index].delete_passenger_carriage(passenger_carriage)
-      end
+      @trains[train_index].carriages.each_index { |index| puts "#{index}: #{@trains[train_index].carriages[index]}" }
+      puts "Выберите вагон из списка по индексу"
+      carriage_index = gets.chomp.to_i
+      @trains[train_index].delete_carriage(@trains[train_index].carriages[carriage_index])
     end
   end
 
@@ -260,7 +259,7 @@ class Interface
             }
             puts "Выберите индекс нужного вагона, начиная с 0, в котором нужно занять место"
             carriage_index = gets.chomp.to_i
-            passenger_carriage_choice = @trains[train_index].passenger_train_carriages[carriage_index - 1]
+            passenger_carriage_choice = @trains[train_index].carriages[carriage_index - 1]
             passenger_carriage_choice.take_seat
 
           elsif @trains[train_index].type == "cargo"
@@ -269,7 +268,7 @@ class Interface
             }
             puts "Выберите индекс нужного вагона, начиная с 0, в котором нужно занять объем"
             carriage_index = gets.chomp.to_i
-            cargo_carriage_choice = @trains[train_index].cargo_train_carriages[carriage_index]
+            cargo_carriage_choice = @trains[train_index].carriages[carriage_index]
             puts "Введите величину объема, который нужно занять"
             volume_value = gets.chomp.to_i
             cargo_carriage_choice.take_volume(volume_value)
